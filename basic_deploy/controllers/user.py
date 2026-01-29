@@ -3,8 +3,9 @@ from http import HTTPStatus
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required
 
-from basic_deploy.app import User, db
+
 from basic_deploy.controllers.utils import requires_role
+from basic_deploy.models.models import User, db
 
 app = Blueprint("user", __name__, url_prefix="/users")
 

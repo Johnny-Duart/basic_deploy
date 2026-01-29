@@ -2,7 +2,7 @@ from http import HTTPStatus
 
 from flask import Blueprint, request
 
-from basic_deploy.app import Role, db
+from basic_deploy.models.models import Role, db
 
 app = Blueprint("role", __name__, url_prefix="/roles")
 

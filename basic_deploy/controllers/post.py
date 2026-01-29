@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 
-from basic_deploy.app import Post, db
+from basic_deploy.models.models import Post, db
 
 app = Blueprint("post", __name__, url_prefix="/posts")
 
