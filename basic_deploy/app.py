@@ -67,11 +67,14 @@ def create_app(test_config=None):
         instance_path=os.path.join(os.path.dirname(__file__), "instance"),
         instance_relative_config=False,
     )
+
+    database_url = os.environ.get("DATABASE_URL")
+
     app.config.from_mapping(
-        SECRET_KEY="dev",
-        SQLALCHEMY_DATABASE_URI="sqlite:///"
-        + os.path.join(app.instance_path, "dio_bank.sqlite"),
-        JWT_SECRET_KEY="super-secret",
+        SECRET_KEY=os.environ.get("SECRET_KEY", "dev"),
+        JWT_SECRET_KEY=os.environ.get("JWT_SECRET_KEY", "dev"),
+        SQLALCHEMY_DATABASE_URI=database_url
+        or "sqlite:///" + os.path.join(app.instance_path, "dio_bank.sqlite"),
     )
 
     if test_config is None:
@@ -89,7 +92,7 @@ def create_app(test_config=None):
     db.init_app(app)
     migrate.init_app(app, db)
     jwt.init_app(app)
-    from .controllers import auth, post, role, user
+    from basic_deploy.controllers import auth, post, role, user
 
     app.register_blueprint(post.app)
     app.register_blueprint(user.app)
@@ -99,3 +102,6 @@ def create_app(test_config=None):
     return app
 
 
+if __name__ == "__main__":
+    app = create_app()
+    app.run()

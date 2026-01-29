@@ -1,6 +1,6 @@
 from http import HTTPStatus
 
-from app import Role, User, db
+from basic_deploy.app import Role, User, db
 
 
 def test_get_user_success(client):

@@ -1,5 +1,5 @@
 import pytest
-from app import Role, User, create_app, db
+from basic_deploy.app import Role, User, create_app, db
 
 
 @pytest.fixture

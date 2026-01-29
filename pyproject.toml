@@ -18,7 +18,9 @@ dependencies = [
     "jinja2<3.1",
     "werkzeug<2.3",
     "pytest>=9.0.2,<10.0.0",
-    "pytest-mock"
+    "pytest-mock",
+    "gunicorn (>=24.1.1,<25.0.0)",
+    "waitress (>=3.0.2,<4.0.0)"
 ]
 
 
